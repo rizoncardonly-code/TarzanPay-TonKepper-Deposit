@@ -360,4 +360,8 @@ app.get('/poll', async (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, '0.0.0.0', () => console.log(`🚀 Tarzan Deposit on port ${PORT}`));
+// Vercel এ app export হয়, লোকাল/অন্য হোস্টে সরাসরি চালালে listen করে
+if (require.main === module) {
+  app.listen(PORT, '0.0.0.0', () => console.log(`🚀 Tarzan Deposit on port ${PORT}`));
+}
+module.exports = app;
